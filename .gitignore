@@ -1,0 +1,5 @@
+client/velocity-tweaks-client/node_modules/*
+client/velocity-tweaks-client/.env
+server/node_modules/*
+server/.env*
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+</head>
+<body>
+    <h1>Payment Successful</h1>
+    <p>Thank you for your purchase!</p>
+    <h2>Your Downloads:</h2>
+    <ul>
+        <% downloadLinks.forEach(link => { %>
+            <li>
+                <a href="<%= link.link %>"><%= link.productName %></a>
+            </li>
+        <% }); %>
+    </ul>
+    <h2>Your License Keys:</h2>
+    <ul>
+        <% licenseKeys.forEach(key => { %>
+            <li><%= key.productName %>: <%= key.licenseKey %></li>
+        <% }); %>
+    </ul>
+</body>
+</html>

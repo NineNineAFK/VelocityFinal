@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop</title>
+  <style>
+    input[type="submit"], button {
+      height: 40px;
+      width: 200px;
+      border: none;
+      border-radius: 5px;
+      background-color: #0070f3;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    input[type="text"] {
+      height: 35px;
+      width: 300px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 0 10px;
+    }
+    .product {
+      margin-bottom: 20px;
+    }
+    .coupon {
+      margin-top: 20px;
+    }
+    .cart-summary {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shop</h1>
+
+  <!-- Products Section -->
+  <div class="product">
+    <h2>Product 1 - $10</h2>
+    <form action="/cart/add-to-cart" method="POST">
+      <input type="hidden" name="productName" value="Basic Utility">
+      <input type="hidden" name="priceId" value="<%= product1 %>">
+      <input type="hidden" name="price" value="10">
+      <input type="submit" value="Add to Cart">
+    </form>
+  </div>
+  <div class="product">
+    <h2>Product 2 - $25</h2>
+    <form action="/cart/add-to-cart" method="POST">
+      <input type="hidden" name="productName" value="Premium Utility">
+      <input type="hidden" name="priceId" value="<%= product2 %>">
+      <input type="hidden" name="price" value="25">
+      <input type="submit" value="Add to Cart">
+    </form>
+  </div>
+
+  <button onclick="location.href='/cart/cart'">Visit Cart</button>
+
+  <!-- Cart Summary -->
+  <div class="cart-summary">
+    <h2>Cart Summary</h2>
+    <p>Total Amount: $<%= totalAmount %></p>
+    <% if (discountedAmount && discountedAmount !== totalAmount) { %>
+      <p>Discounted Amount: $<%= discountedAmount %></p>
+    <% } %>
+  </div>
+
+  <!-- Coupon Section -->
+  <div class="coupon">
+    <h3>Apply Coupon</h3>
+    <form action="/cart/cart" method="GET">
+      <input type="text" name="couponId" placeholder="Enter Coupon Code">
+      <input type="submit" value="Apply Coupon">
+    </form>
+    <% if (couponError) { %>
+      <p style="color: red;"><%= couponError %></p>
+    <% } %>
+  </div>
+
+  <!-- Buy Now Section -->
+  <form action="/checkout" method="POST">
+    <input type="hidden" name="CouponCode" value="<%= couponCode %>"> <!-- Pass the coupon code -->
+    <input type="submit" value="Buy Now">
+  </form>
+</body>
+</html>
