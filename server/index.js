@@ -50,7 +50,7 @@ app.use('/webhook', paypalWebhookRoutes);
 
 // Routes for cart, checkout, and products
 app.use('/cart', restrictToLoggedInUserOnly, cartRoutes);
-app.use('/checkout', checkoutRoutes, methodRoutes);
+app.use('/checkout', restrictToLoggedInUserOnly,checkoutRoutes, methodRoutes);
 app.use('/download', downloadRoutes);
 app.use('/products', productRoutes);
 
